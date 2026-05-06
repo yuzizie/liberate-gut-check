@@ -29,9 +29,10 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Goth
 .section { margin-bottom: 1.75rem; }
 .section-title { font-size: 17px; font-weight: 700; margin: 0 0 14px; color: #2A2017; padding-left: 4px; }
 .options { display: flex; flex-direction: column; gap: 10px; }
-.option { display: flex; align-items: center; padding: 16px 18px; background: #FFFFFF; border: 1px solid transparent; border-radius: 12px; font-size: 16px; cursor: pointer; transition: all 0.15s; user-select: none; color: #2A2017; font-weight: 500; }
+.option { display: flex; align-items: center; padding: 16px 18px; background: #FFFFFF; border: 2px solid transparent; border-radius: 12px; font-size: 16px; cursor: pointer; transition: all 0.15s; user-select: none; color: #2A2017; font-weight: 500; }
+.option * { pointer-events: none; }
 .option:active { transform: scale(0.99); }
-.option.selected { background: #FFFFFF; border-color: #5E4A3A; border-width: 2px; color: #2A2017; font-weight: 700; }
+.option.selected { background: #FFFFFF; border-color: #5E4A3A; color: #2A2017; font-weight: 700; }
 .check-circle { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #C8B8A4; margin-right: 14px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
 .option.selected .check-circle { background: #5E4A3A; border-color: #5E4A3A; }
 .option.selected .check-circle::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: white; }
@@ -154,7 +155,7 @@ const sections = Q.map((q, idx) => `
 <div class="section">
 <p class="section-title">${idx+1}. ${q.key}</p>
 <div class="options" data-q="${idx}">
-${q.opts.map((o, i) => `<div class="option ${answers[idx] === i ? 'selected' : ''}" data-i="${i}"><div class="check-circle"></div><span>${o[0]}</span></div>`).join('')}
+${q.opts.map((o, i) => `<div class="option ${answers[idx] === i ? 'selected' : ''}" data-q="${idx}" data-i="${i}"><div class="check-circle"></div><span>${o[0]}</span></div>`).join('')}
 </div>
 </div>
 `).join('');
@@ -166,9 +167,12 @@ ${sections}
 <button class="cta-btn" id="do-submit" ${answered < total ? 'disabled' : ''} style="margin-top:1.5rem;">${answered < total ? `あと ${total - answered} 項目` : '結果を見る'}</button>
 <button class="action-btn" id="back" style="margin-top:10px;">戻る</button>
 `;
-document.querySelectorAll('.options').forEach(grp => {
-grp.querySelectorAll('.option').forEach(opt => {
-opt.addEventListener('click', () => { const qi = parseInt(grp.dataset.q); const oi = parseInt(opt.dataset.i); answers[qi] = oi; render(); });
+document.querySelectorAll('.option').forEach(opt => {
+opt.addEventListener('click', function() {
+const qi = parseInt(this.getAttribute('data-q'));
+const oi = parseInt(this.getAttribute('data-i'));
+answers[qi] = oi;
+render();
 });
 });
 document.getElementById('do-submit').addEventListener('click', () => {
@@ -200,74 +204,4 @@ ${SYMBOL_SMALL}
 ${radarSvg}
 </div>
 <p class="share-hint">スクリーンショットして<br>オープンチャットでシェアできます</p>
-<div class="actions">
-${(mode === 'before' && afterData) || (mode === 'after' && beforeData) ? `<button class="action-btn primary" id="go-compare">ビフォーアフターを見る</button>` : ''}
-<button class="action-btn" id="go-init">トップに戻る</button>
-</div>
-`;
-const gc = document.getElementById('go-compare'); if (gc) gc.addEventListener('click', () => { view = 'compare'; render(); window.scrollTo(0,0); });
-document.getElementById('go-init').addEventListener('click', () => { view = 'init'; render(); window.scrollTo(0,0); });
-}
-function makeRadar(ans, ans2) {
-const cx = 175, cy = 155, r = 95;
-const n = Q.length;
-const angles = Array.from({length: n}, (_, i) => -Math.PI/2 + i * 2 * Math.PI / n);
-const rings = [0.25, 0.5, 0.75, 1].map(f => `<polygon points="${angles.map(a => `${cx + Math.cos(a)*r*f},${cy + Math.sin(a)*r*f}`).join(' ')}" fill="none" stroke="#D6C8B5" stroke-width="1"/>`).join('');
-function poly(a, color, fillOp) {
-const pts = angles.map((ang, i) => { const v = a[i] !== undefined ? Q[i].opts[a[i]][1] / 10 : 0; return `${cx + Math.cos(ang)*r*v},${cy + Math.sin(ang)*r*v}`; }).join(' ');
-return `<polygon points="${pts}" fill="${color}" fill-opacity="${fillOp}" stroke="${color}" stroke-width="2.5"/>`;
-}
-const labels = angles.map((a, i) => {
-const lr = r + 22; const x = cx + Math.cos(a)*lr; const y = cy + Math.sin(a)*lr;
-const anchor = Math.abs(Math.cos(a)) < 0.3 ? 'middle' : (Math.cos(a) > 0 ? 'start' : 'end');
-return `<text x="${x}" y="${y}" text-anchor="${anchor}" dominant-baseline="middle" font-size="13" fill="#2A2017" font-weight="600">${Q[i].key}</text>`;
-}).join('');
-let polys = '';
-if (ans2) { polys = poly(ans, '#8B7355', 0.25) + poly(ans2, '#4A6B3A', 0.35); }
-else { polys = poly(ans, '#5E4A3A', 0.22); }
-return `<svg viewBox="0 0 350 310" style="width:100%;max-width:340px;height:auto;display:block;margin:0 auto;">${rings}${angles.map(a => `<line x1="${cx}" y1="${cy}" x2="${cx + Math.cos(a)*r}" y2="${cy + Math.sin(a)*r}" stroke="#D6C8B5" stroke-width="1"/>`).join('')}${polys}${labels}</svg>`;
-}
-function renderCompare() {
-if (!beforeData || !afterData) { view = 'init'; render(); return; }
-const sb = calcScore(beforeData.answers);
-const sa = calcScore(afterData.answers);
-const pb = Math.round(sb / MAX * 100);
-const pa = Math.round(sa / MAX * 100);
-const diff = pa - pb;
-const diffClass = diff > 0 ? 'up' : 'same';
-const diffText = diff > 0 ? `+${diff}点アップ` : (diff === 0 ? '同じスコア' : `${diff}点`);
-const radarSvg = makeRadar(beforeData.answers, afterData.answers);
-app.innerHTML = `
-${SYMBOL_SMALL}
-<h1 class="page-title">ビフォーアフター</h1>
-<div class="compare-grid">
-<div class="compare-card">
-<p class="compare-label">開始時</p>
-<p class="compare-num" style="color:#7A6345;">${pb}</p>
-</div>
-<div class="compare-card" style="background:#EEF2E5;">
-<p class="compare-label" style="color:#4A6B3A;">7日後</p>
-<p class="compare-num" style="color:#4A6B3A;">${pa}</p>
-</div>
-</div>
-<div class="diff ${diffClass}">${diffText}</div>
-<div class="radar-wrap">
-<p class="radar-title">変化の可視化</p>
-${radarSvg}
-<div class="legend">
-<span><span class="legend-dot" style="background:#8B7355;"></span>開始時</span>
-<span><span class="legend-dot" style="background:#4A6B3A;"></span>7日後</span>
-</div>
-</div>
-<p class="share-hint">スクリーンショットして<br>オープンチャットでシェアできます</p>
-<div class="actions">
-<button class="action-btn" id="go-init">トップに戻る</button>
-</div>
-`;
-document.getElementById('go-init').addEventListener('click', () => { view = 'init'; render(); window.scrollTo(0,0); });
-}
-render();
-})();
-</script>
-</body>
-</html>
+<div class="act
