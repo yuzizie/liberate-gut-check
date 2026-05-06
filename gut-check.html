@@ -3,52 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>腸内環境チェックシート | Liberate</title>
+<title>腸セルフチェック | 膝痛専門整体院 Liberate</title>
 <style>
-* { box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; margin: 0; padding: 0; background: #FAF8F3; color: #2C2C2A; line-height: 1.6; }
-.container { max-width: 480px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
-.title { font-size: 22px; font-weight: 600; margin: 0 0 4px; text-align: center; color: #2C2C2A; }
-.subtitle { font-size: 13px; color: #5F5E5A; margin: 0 0 1.5rem; text-align: center; }
-.brand { font-size: 11px; color: #888780; text-align: center; margin: 0 0 1.5rem; letter-spacing: 0.5px; }
-.section { margin-bottom: 1.25rem; }
-.section-title { font-size: 14px; font-weight: 600; margin: 0 0 8px; padding-bottom: 6px; border-bottom: 1px solid #E8E5DD; color: #444441; }
-.options { display: flex; flex-direction: column; gap: 6px; }
-.option { display: flex; align-items: center; padding: 12px 14px; background: #FFFFFF; border: 1px solid #E8E5DD; border-radius: 10px; font-size: 14px; cursor: pointer; transition: all 0.15s; user-select: none; -webkit-tap-highlight-color: transparent; }
-.option:active { transform: scale(0.98); }
-.option.selected { background: #E6F1FB; border-color: #378ADD; color: #0C447C; font-weight: 500; }
-.check { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #B4B2A9; margin-right: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-.option.selected .check { background: #378ADD; border-color: #378ADD; }
-.option.selected .check::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: white; }
-.submit { width: 100%; padding: 16px; margin-top: 1rem; background: #2C2C2A; color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 500; cursor: pointer; }
-.submit:disabled { background: #B4B2A9; cursor: not-allowed; }
-.progress { font-size: 12px; color: #5F5E5A; text-align: center; margin-bottom: 1rem; }
-.result { padding: 1.5rem 0; text-align: center; }
-.score-circle { width: 160px; height: 160px; border-radius: 50%; margin: 0 auto 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-.score-num { font-size: 48px; font-weight: 600; line-height: 1; }
-.score-max { font-size: 13px; opacity: 0.7; margin-top: 4px; }
-.band { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
-.band-msg { font-size: 14px; color: #5F5E5A; margin: 0 0 1.5rem; line-height: 1.7; padding: 0 1rem; }
-.radar-wrap { background: #FFFFFF; border: 1px solid #E8E5DD; border-radius: 12px; padding: 1.25rem 1rem; margin: 1rem 0; }
-.radar-title { font-size: 13px; font-weight: 600; margin: 0 0 12px; text-align: center; color: #5F5E5A; }
-.mode-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 1.5rem; }
-.mode-btn { padding: 14px 8px; background: #FFFFFF; border: 1px solid #E8E5DD; border-radius: 10px; font-size: 13px; cursor: pointer; font-family: inherit; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif; margin: 0; padding: 0; background: #F5EFE4; color: #3D3328; line-height: 1.7; }
+.container { max-width: 520px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+.brand { font-size: 12px; color: #8B7355; text-align: center; margin: 0 0 2rem; letter-spacing: 3px; font-weight: 500; }
+.symbol-wrap { display: flex; justify-content: center; margin: 0 0 2rem; }
+.symbol { width: 90px; height: 90px; }
+.title-main { font-size: 26px; font-weight: 500; margin: 0 0 1.5rem; text-align: center; color: #3D3328; letter-spacing: 2px; font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; }
+.subtitle-poetic { font-size: 15px; color: #5E4A3A; text-align: center; margin: 0 0 2.5rem; line-height: 2.2; font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; }
+.intro-card { background: #FFFFFF; border-radius: 16px; padding: 1.75rem 1.5rem; margin: 0 0 1.5rem; }
+.intro-text { font-size: 14px; color: #3D3328; margin: 0 0 1rem; line-height: 2; }
+.intro-text:last-child { margin-bottom: 0; }
+.flow-card { background: #FFFFFF; border-radius: 16px; padding: 1.5rem 1.5rem; margin: 0 0 2rem; }
+.flow-title { font-size: 14px; font-weight: 500; margin: 0 0 1rem; color: #3D3328; }
+.flow-item { display: flex; align-items: flex-start; gap: 12px; padding: 8px 0; }
+.flow-num { width: 24px; height: 24px; border-radius: 50%; background: #F5EFE4; color: #5E4A3A; font-size: 12px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.flow-text { font-size: 13px; color: #3D3328; line-height: 1.7; padding-top: 2px; }
+.cta-btn { width: 100%; padding: 18px; background: #5E4A3A; color: white; border: none; border-radius: 12px; font-size: 15px; font-weight: 500; cursor: pointer; font-family: inherit; letter-spacing: 1px; transition: opacity 0.15s; }
+.cta-btn:hover { opacity: 0.9; }
+.cta-btn:active { transform: scale(0.99); }
+.cta-btn:disabled { background: #B4A89B; cursor: not-allowed; }
+.disclaimer { font-size: 11px; color: #8B7355; text-align: center; margin: 1.5rem 0 0; line-height: 1.8; }
+.section { margin-bottom: 1.5rem; }
+.section-title { font-size: 15px; font-weight: 500; margin: 0 0 12px; color: #3D3328; padding-left: 4px; }
+.options { display: flex; flex-direction: column; gap: 8px; }
+.option { display: flex; align-items: center; padding: 14px 16px; background: #FFFFFF; border: 1px solid transparent; border-radius: 12px; font-size: 14px; cursor: pointer; transition: all 0.15s; user-select: none; color: #3D3328; }
+.option:active { transform: scale(0.99); }
+.option.selected { background: #FFFFFF; border-color: #5E4A3A; color: #3D3328; }
+.check-circle { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #C8B8A4; margin-right: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+.option.selected .check-circle { background: #5E4A3A; border-color: #5E4A3A; }
+.option.selected .check-circle::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: white; }
+.progress-text { font-size: 12px; color: #8B7355; text-align: center; margin: 0 0 2rem; letter-spacing: 1px; }
+.page-title { font-size: 22px; font-weight: 500; margin: 0 0 1rem; text-align: center; color: #3D3328; font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; letter-spacing: 1px; }
+.mode-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
+.mode-btn { padding: 16px 8px; background: #FFFFFF; border: 1px solid transparent; border-radius: 12px; font-size: 13px; cursor: pointer; font-family: inherit; color: #3D3328; transition: all 0.15s; }
 .mode-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-.mode-btn.active { background: #2C2C2A; border-color: #2C2C2A; color: white; font-weight: 500; }
-.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 1rem 0; }
-.compare-card { background: #FFFFFF; border: 1px solid #E8E5DD; border-radius: 10px; padding: 16px; text-align: center; }
-.compare-label { font-size: 12px; color: #5F5E5A; margin: 0 0 4px; }
-.compare-num { font-size: 28px; font-weight: 600; }
-.diff { font-size: 16px; font-weight: 600; padding: 12px; border-radius: 10px; margin: 0 0 1rem; }
-.diff.up { background: #E1F5EE; color: #0F6E56; }
-.diff.same { background: #F1EFE8; color: #5F5E5A; }
-.actions { display: flex; flex-direction: column; gap: 8px; margin-top: 1.5rem; }
-.action-btn { padding: 14px; background: #FFFFFF; border: 1px solid #B4B2A9; border-radius: 10px; font-size: 14px; cursor: pointer; font-family: inherit; }
-.action-btn:active { transform: scale(0.98); }
-.action-btn.primary { background: #2C2C2A; color: white; border-color: #2C2C2A; }
-.legend { display: flex; justify-content: center; gap: 16px; margin-top: 12px; font-size: 11px; color: #5F5E5A; }
-.legend-dot { display: inline-block; width: 12px; height: 12px; margin-right: 4px; vertical-align: middle; border-radius: 2px; }
-.share-hint { font-size: 12px; color: #888780; text-align: center; margin: 1rem 0 0; line-height: 1.6; }
+.mode-btn.active { background: #5E4A3A; border-color: #5E4A3A; color: white; font-weight: 500; }
+.score-circle { width: 180px; height: 180px; border-radius: 50%; margin: 1rem auto 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #FFFFFF; border: 2px solid; }
+.score-num { font-size: 56px; font-weight: 500; line-height: 1; font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; }
+.score-max { font-size: 13px; color: #8B7355; margin-top: 6px; letter-spacing: 1px; }
+.band-label { font-size: 20px; font-weight: 500; margin-bottom: 12px; text-align: center; font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; letter-spacing: 2px; }
+.band-msg { font-size: 14px; color: #5E4A3A; margin: 0 0 2rem; line-height: 2.2; padding: 0 0.5rem; text-align: center; font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; }
+.radar-wrap { background: #FFFFFF; border-radius: 16px; padding: 1.5rem 1rem; margin: 1rem 0 1.5rem; }
+.radar-title { font-size: 13px; font-weight: 500; margin: 0 0 1rem; text-align: center; color: #5E4A3A; letter-spacing: 1px; }
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 1.5rem 0; }
+.compare-card { background: #FFFFFF; border-radius: 12px; padding: 1.25rem 1rem; text-align: center; }
+.compare-label { font-size: 12px; color: #8B7355; margin: 0 0 6px; letter-spacing: 1px; }
+.compare-num { font-size: 32px; font-weight: 500; color: #3D3328; font-family: "Hiragino Mincho ProN", "Yu Mincho", serif; }
+.diff { font-size: 16px; font-weight: 500; padding: 14px; border-radius: 12px; margin: 0 0 1.5rem; text-align: center; letter-spacing: 1px; }
+.diff.up { background: #FFFFFF; color: #5E7A4A; border: 1px solid #B8C8A8; }
+.diff.same { background: #FFFFFF; color: #8B7355; }
+.actions { display: flex; flex-direction: column; gap: 10px; margin-top: 2rem; }
+.action-btn { padding: 14px; background: #FFFFFF; border: 1px solid #C8B8A4; border-radius: 12px; font-size: 14px; cursor: pointer; font-family: inherit; color: #5E4A3A; transition: all 0.15s; }
+.action-btn:active { transform: scale(0.99); }
+.action-btn.primary { background: #5E4A3A; color: white; border-color: #5E4A3A; }
+.legend { display: flex; justify-content: center; gap: 20px; margin-top: 12px; font-size: 11px; color: #8B7355; }
+.legend-dot { display: inline-block; width: 10px; height: 10px; margin-right: 6px; vertical-align: middle; border-radius: 50%; }
+.share-hint { font-size: 12px; color: #8B7355; text-align: center; margin: 1.5rem 0 0; line-height: 1.8; }
+.symbol-small { width: 40px; height: 40px; margin: 0 auto 1rem; display: block; }
 </style>
 </head>
 <body>
@@ -78,13 +92,15 @@ try {
 const b = localStorage.getItem('gh_before'); if (b) beforeData = JSON.parse(b);
 const a = localStorage.getItem('gh_after'); if (a) afterData = JSON.parse(a);
 } catch(e){}
+const SYMBOL = `<svg class="symbol" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="52" fill="none" stroke="#8B7355" stroke-width="0.8" opacity="0.4"/><path d="M 35 60 Q 45 45 55 55 Q 65 65 75 50 Q 85 35 80 60 Q 85 80 70 75 Q 55 80 45 70 Q 30 75 35 60 Z" fill="none" stroke="#5E4A3A" stroke-width="1.4" stroke-linejoin="round"/><path d="M 50 55 Q 55 55 60 58" fill="none" stroke="#5E4A3A" stroke-width="0.7" opacity="0.4"/><path d="M 60 65 Q 65 68 70 65" fill="none" stroke="#5E4A3A" stroke-width="0.7" opacity="0.4"/><circle cx="50" cy="62" r="1" fill="#5E4A3A" opacity="0.4"/><circle cx="68" cy="58" r="1" fill="#5E4A3A" opacity="0.4"/><circle cx="62" cy="72" r="1" fill="#5E4A3A" opacity="0.4"/></svg>`;
+const SYMBOL_SMALL = `<svg class="symbol-small" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="52" fill="none" stroke="#8B7355" stroke-width="1.5" opacity="0.4"/><path d="M 35 60 Q 45 45 55 55 Q 65 65 75 50 Q 85 35 80 60 Q 85 80 70 75 Q 55 80 45 70 Q 30 75 35 60 Z" fill="none" stroke="#5E4A3A" stroke-width="2.5" stroke-linejoin="round"/></svg>`;
 function band(score) {
 const pct = Math.round(score / MAX * 100);
-if (pct >= 80) return {label:'絶好調', msg:'腸が喜んでいる状態です。この調子をキープしていきましょう。', color:'#0F6E56', bg:'#E1F5EE'};
-if (pct >= 65) return {label:'良い状態', msg:'良い状態です。日々のケアでさらに上を目指せます。', color:'#185FA5', bg:'#E6F1FB'};
-if (pct >= 50) return {label:'まずまず', msg:'少し意識すれば改善できます。一緒に整えていきましょう。', color:'#854F0B', bg:'#FAEEDA'};
-if (pct >= 35) return {label:'要ケア', msg:'腸が疲れているサイン。今がケアを始めるタイミングです。', color:'#993C1D', bg:'#FAECE7'};
-return {label:'SOS', msg:'腸からのSOS。一緒に整えていきましょう。焦らず一歩ずつ。', color:'#A32D2D', bg:'#FCEBEB'};
+if (pct >= 80) return {label:'絶好調', msg:'腸が喜んでいる状態です。\nこの巡りを大切にしていきましょう。', color:'#5E7A4A', bg:'#EEF2E5'};
+if (pct >= 65) return {label:'良い状態', msg:'腸の巡りは良好です。\n日々のケアでさらに整えていけます。', color:'#5E6A8A', bg:'#E8ECF2'};
+if (pct >= 50) return {label:'まずまず', msg:'少し意識すれば、もっと整います。\n一緒にゆっくり進んでいきましょう。', color:'#8B7355', bg:'#F5EFE4'};
+if (pct >= 35) return {label:'要ケア', msg:'腸が少し疲れているかもしれません。\n今がケアを始めるタイミングです。', color:'#A87A4F', bg:'#F2E8DC'};
+return {label:'休息のサイン', msg:'腸が休息を求めています。\n焦らず一歩ずつ整えていきましょう。', color:'#8A5544', bg:'#F0DDD2'};
 }
 function render() {
 if (view === 'init') return renderInit();
@@ -95,7 +111,32 @@ if (view === 'compare') return renderCompare();
 function renderInit() {
 const hasBefore = beforeData !== null;
 const hasAfter = afterData !== null;
-app.innerHTML = `<p class="brand">膝痛専門整体院 Liberate</p><p class="title">腸内環境チェックシート</p><p class="subtitle">まずはご自身の体の状態を把握してみましょう</p><div class="mode-buttons"><button class="mode-btn ${!hasBefore ? 'active' : ''}" data-mode="before">開始時チェック${hasBefore ? ' ✓' : ''}</button><button class="mode-btn ${hasBefore && !hasAfter ? 'active' : ''}" data-mode="after" ${!hasBefore ? 'disabled' : ''}>7日後チェック${hasAfter ? ' ✓' : ''}</button></div>${hasBefore && hasAfter ? `<button class="submit" id="show-compare">ビフォーアフターを見る</button>` : ''}${hasBefore ? `<button class="action-btn" style="margin-top:8px;" id="show-before">開始時の結果を見る</button>` : ''}${hasAfter ? `<button class="action-btn" style="margin-top:8px;" id="show-after">7日後の結果を見る</button>` : ''}${(hasBefore || hasAfter) ? `<button class="action-btn" style="margin-top:16px; color: #993C1D;" id="reset">最初からやり直す</button>` : ''}`;
+app.innerHTML = `
+<p class="brand">膝痛専門整体院 LIBERATE</p>
+<div class="symbol-wrap">${SYMBOL}</div>
+<h1 class="title-main">腸セルフチェック</h1>
+<p class="subtitle-poetic">あなたの今の腸を、<br>やさしく見える化します。</p>
+<div class="intro-card">
+<p class="intro-text">腸の状態は、自分では見えにくいものです。</p>
+<p class="intro-text">このセルフチェックでは、毎日の体の声を8つの角度から見える化します。</p>
+<p class="intro-text">所要時間は約3分。今のあなたの腸の巡りを、一緒に確かめていきましょう。</p>
+</div>
+<div class="flow-card">
+<p class="flow-title">チェックの流れ</p>
+<div class="flow-item"><div class="flow-num">1</div><div class="flow-text">8項目に直感で回答</div></div>
+<div class="flow-item"><div class="flow-num">2</div><div class="flow-text">スコアと項目別の状態を表示</div></div>
+<div class="flow-item"><div class="flow-num">3</div><div class="flow-text">7日後にもう一度で変化を確認</div></div>
+</div>
+<div class="mode-buttons">
+<button class="mode-btn ${!hasBefore ? 'active' : ''}" data-mode="before">開始時チェック${hasBefore ? ' ✓' : ''}</button>
+<button class="mode-btn ${hasBefore && !hasAfter ? 'active' : ''}" data-mode="after" ${!hasBefore ? 'disabled' : ''}>7日後チェック${hasAfter ? ' ✓' : ''}</button>
+</div>
+${hasBefore && hasAfter ? `<button class="cta-btn" id="show-compare" style="margin-bottom:8px;">ビフォーアフターを見る</button>` : ''}
+${hasBefore ? `<button class="action-btn" id="show-before" style="margin-bottom:8px;">開始時の結果を見る</button>` : ''}
+${hasAfter ? `<button class="action-btn" id="show-after" style="margin-bottom:8px;">7日後の結果を見る</button>` : ''}
+${(hasBefore || hasAfter) ? `<button class="action-btn" style="color:#A87A4F; border-color:#E0CCC0;" id="reset">最初からやり直す</button>` : ''}
+<p class="disclaimer">※医療診断ではありません。<br>あくまで現在地を知るための目安としてご活用ください。</p>
+`;
 document.querySelectorAll('.mode-btn').forEach(b => {
 b.addEventListener('click', () => { if (b.disabled) return; mode = b.dataset.mode; answers = {}; view = 'input'; render(); window.scrollTo(0,0); });
 });
@@ -109,8 +150,22 @@ if (confirm('全データをリセットしますか?')) { localStorage.removeIt
 function renderInput() {
 const answered = Object.keys(answers).length;
 const total = Q.length;
-const sections = Q.map((q, idx) => `<div class="section"><p class="section-title">${idx+1}. ${q.key}</p><div class="options" data-q="${idx}">${q.opts.map((o, i) => `<div class="option ${answers[idx] === i ? 'selected' : ''}" data-i="${i}"><div class="check"></div><span>${o[0]}</span></div>`).join('')}</div></div>`).join('');
-app.innerHTML = `<p class="title">${mode === 'before' ? '開始時チェック' : '7日後チェック'}</p><p class="progress">${answered} / ${total} 項目</p>${sections}<button class="submit" id="do-submit" ${answered < total ? 'disabled' : ''}>${answered < total ? `あと ${total - answered} 項目` : '結果を見る'}</button><button class="action-btn" id="back" style="margin-top:8px;">戻る</button>`;
+const sections = Q.map((q, idx) => `
+<div class="section">
+<p class="section-title">${idx+1}. ${q.key}</p>
+<div class="options" data-q="${idx}">
+${q.opts.map((o, i) => `<div class="option ${answers[idx] === i ? 'selected' : ''}" data-i="${i}"><div class="check-circle"></div><span>${o[0]}</span></div>`).join('')}
+</div>
+</div>
+`).join('');
+app.innerHTML = `
+${SYMBOL_SMALL}
+<h1 class="page-title">${mode === 'before' ? '開始時チェック' : '7日後チェック'}</h1>
+<p class="progress-text">${answered} / ${total} 項目</p>
+${sections}
+<button class="cta-btn" id="do-submit" ${answered < total ? 'disabled' : ''} style="margin-top:1.5rem;">${answered < total ? `あと ${total - answered} 項目` : '結果を見る'}</button>
+<button class="action-btn" id="back" style="margin-top:10px;">戻る</button>
+`;
 document.querySelectorAll('.options').forEach(grp => {
 grp.querySelectorAll('.option').forEach(opt => {
 opt.addEventListener('click', () => { const qi = parseInt(grp.dataset.q); const oi = parseInt(opt.dataset.i); answers[qi] = oi; render(); });
@@ -131,28 +186,46 @@ const score = calcScore(answers);
 const pct = Math.round(score / MAX * 100);
 const b = band(score);
 const radarSvg = makeRadar(answers);
-app.innerHTML = `<div class="result"><p class="title" style="margin-bottom:1rem;">${mode === 'before' ? '開始時' : '7日後'}の結果</p><div class="score-circle" style="background:${b.bg}; color:${b.color};"><div class="score-num">${pct}</div><div class="score-max">/ 100点</div></div><p class="band" style="color:${b.color};">${b.label}</p><p class="band-msg">${b.msg}</p><div class="radar-wrap"><p class="radar-title">項目別の状態</p>${radarSvg}</div><p class="share-hint">スクリーンショットして<br>オープンチャットでシェアできます</p><div class="actions">${mode === 'before' && afterData ? `<button class="action-btn primary" id="go-compare">ビフォーアフターを見る</button>` : ''}${mode === 'after' && beforeData ? `<button class="action-btn primary" id="go-compare">ビフォーアフターを見る</button>` : ''}<button class="action-btn" id="go-init">トップに戻る</button></div></div>`;
+app.innerHTML = `
+${SYMBOL_SMALL}
+<h1 class="page-title">${mode === 'before' ? '開始時' : '7日後'}の結果</h1>
+<div class="score-circle" style="border-color:${b.color}; background:${b.bg};">
+<div class="score-num" style="color:${b.color};">${pct}</div>
+<div class="score-max">/ 100</div>
+</div>
+<p class="band-label" style="color:${b.color};">${b.label}</p>
+<p class="band-msg">${b.msg.replace(/\n/g,'<br>')}</p>
+<div class="radar-wrap">
+<p class="radar-title">項目別の状態</p>
+${radarSvg}
+</div>
+<p class="share-hint">スクリーンショットして<br>オープンチャットでシェアできます</p>
+<div class="actions">
+${(mode === 'before' && afterData) || (mode === 'after' && beforeData) ? `<button class="action-btn primary" id="go-compare">ビフォーアフターを見る</button>` : ''}
+<button class="action-btn" id="go-init">トップに戻る</button>
+</div>
+`;
 const gc = document.getElementById('go-compare'); if (gc) gc.addEventListener('click', () => { view = 'compare'; render(); window.scrollTo(0,0); });
 document.getElementById('go-init').addEventListener('click', () => { view = 'init'; render(); window.scrollTo(0,0); });
 }
 function makeRadar(ans, ans2) {
-const cx = 175, cy = 150, r = 100;
+const cx = 175, cy = 155, r = 95;
 const n = Q.length;
 const angles = Array.from({length: n}, (_, i) => -Math.PI/2 + i * 2 * Math.PI / n);
-const rings = [0.25, 0.5, 0.75, 1].map(f => `<polygon points="${angles.map(a => `${cx + Math.cos(a)*r*f},${cy + Math.sin(a)*r*f}`).join(' ')}" fill="none" stroke="#E8E5DD" stroke-width="1"/>`).join('');
+const rings = [0.25, 0.5, 0.75, 1].map(f => `<polygon points="${angles.map(a => `${cx + Math.cos(a)*r*f},${cy + Math.sin(a)*r*f}`).join(' ')}" fill="none" stroke="#E0D5C5" stroke-width="0.8"/>`).join('');
 function poly(a, color, fillOp) {
 const pts = angles.map((ang, i) => { const v = a[i] !== undefined ? Q[i].opts[a[i]][1] / 10 : 0; return `${cx + Math.cos(ang)*r*v},${cy + Math.sin(ang)*r*v}`; }).join(' ');
 return `<polygon points="${pts}" fill="${color}" fill-opacity="${fillOp}" stroke="${color}" stroke-width="2"/>`;
 }
 const labels = angles.map((a, i) => {
-const lr = r + 20; const x = cx + Math.cos(a)*lr; const y = cy + Math.sin(a)*lr;
+const lr = r + 22; const x = cx + Math.cos(a)*lr; const y = cy + Math.sin(a)*lr;
 const anchor = Math.abs(Math.cos(a)) < 0.3 ? 'middle' : (Math.cos(a) > 0 ? 'start' : 'end');
-return `<text x="${x}" y="${y}" text-anchor="${anchor}" dominant-baseline="middle" font-size="11" fill="#5F5E5A">${Q[i].key}</text>`;
+return `<text x="${x}" y="${y}" text-anchor="${anchor}" dominant-baseline="middle" font-size="11" fill="#5E4A3A">${Q[i].key}</text>`;
 }).join('');
 let polys = '';
-if (ans2) { polys = poly(ans, '#888780', 0.15) + poly(ans2, '#0F6E56', 0.3); }
-else { polys = poly(ans, '#185FA5', 0.2); }
-return `<svg viewBox="0 0 350 300" style="width:100%;max-width:350px;height:auto;display:block;margin:0 auto;">${rings}${angles.map(a => `<line x1="${cx}" y1="${cy}" x2="${cx + Math.cos(a)*r}" y2="${cy + Math.sin(a)*r}" stroke="#E8E5DD" stroke-width="1"/>`).join('')}${polys}${labels}</svg>`;
+if (ans2) { polys = poly(ans, '#B4A89B', 0.2) + poly(ans2, '#5E7A4A', 0.3); }
+else { polys = poly(ans, '#5E4A3A', 0.18); }
+return `<svg viewBox="0 0 350 310" style="width:100%;max-width:340px;height:auto;display:block;margin:0 auto;">${rings}${angles.map(a => `<line x1="${cx}" y1="${cy}" x2="${cx + Math.cos(a)*r}" y2="${cy + Math.sin(a)*r}" stroke="#E0D5C5" stroke-width="0.8"/>`).join('')}${polys}${labels}</svg>`;
 }
 function renderCompare() {
 if (!beforeData || !afterData) { view = 'init'; render(); return; }
@@ -162,9 +235,35 @@ const pb = Math.round(sb / MAX * 100);
 const pa = Math.round(sa / MAX * 100);
 const diff = pa - pb;
 const diffClass = diff > 0 ? 'up' : 'same';
-const diffText = diff > 0 ? `+${diff}点アップ ✨` : (diff === 0 ? '同じスコア' : `${diff}点`);
+const diffText = diff > 0 ? `+${diff}点アップ` : (diff === 0 ? '同じスコア' : `${diff}点`);
 const radarSvg = makeRadar(beforeData.answers, afterData.answers);
-app.innerHTML = `<div class="result"><p class="title" style="margin-bottom:1rem;">ビフォーアフター</p><div class="compare-grid"><div class="compare-card"><p class="compare-label">開始時</p><p class="compare-num">${pb}</p></div><div class="compare-card" style="background:#E1F5EE; border-color:#9FE1CB;"><p class="compare-label" style="color:#0F6E56;">7日後</p><p class="compare-num" style="color:#0F6E56;">${pa}</p></div></div><div class="diff ${diffClass}">${diffText}</div><div class="radar-wrap"><p class="radar-title">変化の可視化</p>${radarSvg}<div class="legend"><span><span class="legend-dot" style="background:#888780;opacity:0.4;"></span>開始時</span><span><span class="legend-dot" style="background:#0F6E56;opacity:0.5;"></span>7日後</span></div></div><p class="share-hint">スクリーンショットして<br>オープンチャットでシェアできます</p><div class="actions"><button class="action-btn" id="go-init">トップに戻る</button></div></div>`;
+app.innerHTML = `
+${SYMBOL_SMALL}
+<h1 class="page-title">ビフォーアフター</h1>
+<div class="compare-grid">
+<div class="compare-card">
+<p class="compare-label">開始時</p>
+<p class="compare-num" style="color:#8B7355;">${pb}</p>
+</div>
+<div class="compare-card" style="background:#EEF2E5;">
+<p class="compare-label" style="color:#5E7A4A;">7日後</p>
+<p class="compare-num" style="color:#5E7A4A;">${pa}</p>
+</div>
+</div>
+<div class="diff ${diffClass}">${diffText}</div>
+<div class="radar-wrap">
+<p class="radar-title">変化の可視化</p>
+${radarSvg}
+<div class="legend">
+<span><span class="legend-dot" style="background:#B4A89B;"></span>開始時</span>
+<span><span class="legend-dot" style="background:#5E7A4A;"></span>7日後</span>
+</div>
+</div>
+<p class="share-hint">スクリーンショットして<br>オープンチャットでシェアできます</p>
+<div class="actions">
+<button class="action-btn" id="go-init">トップに戻る</button>
+</div>
+`;
 document.getElementById('go-init').addEventListener('click', () => { view = 'init'; render(); window.scrollTo(0,0); });
 }
 render();
